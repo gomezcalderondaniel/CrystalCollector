@@ -1,0 +1,261 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <title>Crystal Collector Game</title>
+    <!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -->
+    <!-- <title><img src="assets/images/metal_crystal-512.png">Crystal Collector Game</title> -->
+
+</head>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- <script type="text/javascript" src = "assets/javascript/game.js"></script> -->
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var wins = 0;
+        var losses = 0;
+        var score = 0;
+        $("#losses").text(losses);
+        $("#wins").text(wins);
+        $("#score").text(score);
+
+
+
+
+
+
+                $(document).keyup(function (event) {
+
+                    //$("#score").val(score)
+                    if (event.which === 83) {
+
+                        var score = 0;
+                        var numberToGuess = (Math.floor(Math.random() * 50) + 20);
+                        var purpleVal = 0;
+                        var topazVal = 0;
+                        var yellowVal = 0;
+                        var turquoiseVal = 0;
+                        var metalVal = 0;
+
+                        $("#numToMatch").text(numberToGuess);
+                        // $("#numToMatch").val(numberToGuess);
+
+
+                        //displayNum.text(numberToGuess);
+
+                        // make each crystal image a random number 
+                        purpleVal = (Math.floor(Math.random() * 12) + 1);
+                        //$(".purplecrystal").val(purpleVal)
+                        topazVal = (Math.floor(Math.random() * 12) + 1);
+                        //$(".topazcrystal").val(topazVal)
+                        yellowVal = (Math.floor(Math.random() * 12) + 1);
+                        //$(".yellowcrystal").val(yellowVal)
+                        turquoiseVal = (Math.floor(Math.random() * 12) + 1);
+                        //$(".turquoisecrystal").val(turquoiseVal)
+                        metalVal = (Math.floor(Math.random() * 12) + 1);
+                        //$(".metalcrystal").val(metalVal)
+
+                        console.log("number to match: ", numberToGuess);
+                        console.log("purple: ", purpleVal);
+                        console.log("topaz: ", topazVal);
+                        console.log("yellow: ", yellowVal);
+                        console.log("turquoise: ", turquoiseVal);
+                        console.log("metal: ", metalVal);
+
+                        // var scoreVal = Number($("#score").val());
+                        //console.log("Value attribute of score: " + scoreVal);
+
+                        $(".purplecrystal").click("on", function () {
+                            score = score + purpleVal;
+                            console.log("score after purple: ", score);
+                            $("#score").text(score);
+                        });
+
+                        $(".yellowcrystal").click("on", function () {
+
+                            score += yellowVal;
+                            console.log("score after yellow: ", score);
+                            $("#score").text(score);
+                        });
+                        $(".metalcrystal").click("on", function () {
+
+                            score += metalVal;
+                            console.log("score after metal: ", score);
+                            $("#score").text(score);
+                        });
+                        $(".topazcrystal").click("on", function () {
+
+                            score += topazVal;
+                            console.log("score after topaz: ", score);
+                            $("#score").text(score);
+                        });
+
+                        $(".turquoisecrystal").click("on", function () {
+
+                            score += turquoiseVal;
+                            console.log("score after turquoise: ", score);
+                            $("#score").text(score);
+                        });
+
+                        $("button").on("click", function () {
+                                // this is what happens if the user wins
+                                if (score == numberToGuess) {
+
+                                    wins++;
+                                    console.log(score);
+                                    $("#score").html("You Win!!!!")
+                                    $("#wins").html(wins);
+                                    setTimeout(function() {gameReset()}, 5000);
+                                    //gameReset();
+
+
+
+                                } else if (score > numberToGuess) {
+
+                                    losses++;
+                                    $("#score").html("You Lose :(");
+                                    $("#losses").html(losses);
+                                    setTimeout(function() {gameReset()}, 5000);
+                                   // gameReset
+                                }
+
+
+                            });
+
+
+                        function gameReset(){
+                            //wins = 0;
+                            //losses = 0;
+                            score = 0;
+                            $("#losses").text(losses);
+                            $("#wins").text(wins);
+                            $("#score").text(score);
+                            
+                            numberToGuess = (Math.floor(Math.random() * 50) + 20);
+                            purpleVal = 0;
+                            topazVal = 0;
+                            yellowVal = 0;
+                            turquoiseVal = 0;
+                            metalVal = 0;
+
+                            console.log("purple after reset: ", purpleVal);
+                            console.log("topaz after reset: ", topazVal);
+                            console.log("yellow after reset: ", yellowVal);
+                            console.log("turquoise after reset: ", turquoiseVal);
+                            console.log("metal after reset: ", metalVal);
+                            console.log("score after reset: ", score);
+                        }
+
+
+
+
+                            //     } else if (score > numberToGuess ){
+                            //     $("#score").text("You lose! Press 's' to start again");
+
+
+                            //   } else if (score = numberToGuess){
+                            //     $("#score").text("You win!!!! Press 's' to play again");
+
+                            //   }
+
+                            console.log("score:", score);
+                            // $("#score").val(score)
+                            // $("#score").text(score)
+                        };
+                });
+    
+    
+    
+    
+    });
+
+
+                        // make each image push number tied to it to the user score div
+</script>
+
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <!-- CrystalsCollector Title Div -->
+                <div id="titleDiv">
+                    <h1>Crystal Collector</h1>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <!-- Main div with game information/rules -->
+                <div id="gameRulesDiv">
+                    <p>Your goal is to match the number to guess by clicking each crystal to increase your score.</p>
+                    <p>You win once you equal the number to match, go over and you lose.</p>
+                    <p>Your score is visible at the bottom of the page.</p>
+                    <h4>Press "s" to begin</h4>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- score counter with win/loss box next to it -->
+        <div class="row">
+            <div class="col"></div>
+            <div id="computerScoreDiv">
+                <h4>Number to Match:<span id="numToMatch"></span> </h4>
+
+            </div>
+        </div>
+
+        <div class="col">
+            <div id="winsLossesDiv">
+                <p>Wins:<span id="wins"></span></p>
+                <p>Losses:<span id="losses"></span></p>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Four images of crystals -->
+    <div class="row">
+        <div class="col">
+            <div id="crystalFamilyDiv">
+                <button class="purplecrystal"><img src="assets/images/purple_crystal-512.png"></button>
+                <button class="topazcrystal"><img src="assets/images/topaz_crystal-512.png"></button>
+                <button class="turquoisecrystal"><img src="assets/images/crystal_turquoise-512.png"></button>
+                <button class="yellowcrystal"><img src="assets/images/yellow_crystal-512.png"></button>
+                <button class="metalcrystal"><img src="assets/images/metal_crystal-512.png"></button>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Player's total score div -->
+    <div class="row">
+        <div class="col">
+            <div id="playerScoreDiv">
+                <p>Your Total Score is: <span id="score"></span></p>
+
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+
+</body>
+
+</html>
